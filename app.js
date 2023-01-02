@@ -1,6 +1,11 @@
 // Imports
 const express = require('express');
 
+// Mongoose and db connection
+// Import the file will invoke connect method
+// => mongoose.connect(connectionString).then(() => { ...
+require('./db/connect');
+
 // App
 const app = express();
 
@@ -15,12 +20,8 @@ app.use(express.json());
 app.get('/', (req, res) => {
 	res.send('Task Manager App');
 });
-// Get all the tasks
+// Routes middleware
 app.use('/api/v1/tasks', tasksRouter);
-// Create a new task
-// Get single task
-// Update task
-// Delete task
 
 // Listen
 const port = 3000;

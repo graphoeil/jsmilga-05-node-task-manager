@@ -1,16 +1,17 @@
-// // Get all the tasks
+// Get all the tasks
 const getAllTasks = (req, res) => {
 	res.send('Get all tasks');
 };
 
 // Create a new task
 const createTask = (req, res) => {
-	res.send('Create task');
+	res.json(req.body);
 };
 
 // Get single task
 const getTask = (req, res) => {
-	res.send('Get single task');
+	const { id } = req.params;
+	res.json({ id });
 };
 
 // Update task
