@@ -13,6 +13,10 @@ const getAllTasks = async(req, res) => {
 };
 
 // Create a new task
+// If table "tasks" doesn't exist
+// This request will create the table
+// based on the Task model, the name
+// of the table will be base on Task with and "s"
 const createTask = async(req, res) => {
 	try {
 		const task = await Task.create(req.body);

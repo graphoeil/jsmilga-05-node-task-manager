@@ -24,6 +24,17 @@ app.get('/', (req, res) => {
 // Routes middleware
 app.use('/api/v1/tasks', tasksRouter);
 
+// Test DEV
+const Car = require('./models/Car');
+app.post('/api/v1/cars', async(req, res) => {
+	try {
+		const car = await Car.create(req.body);
+		res.status(201).json({ car });
+	} catch (error){
+		res.status(500).json({ msg:error });
+	}
+});
+
 // Port
 const port = 3000;
 
