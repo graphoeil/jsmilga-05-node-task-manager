@@ -1,11 +1,16 @@
+// Mongoose model
+// An instance of model is called a document
+const Task = require('../models/Task');
+
 // Get all the tasks
 const getAllTasks = (req, res) => {
 	res.send('Get all tasks');
 };
 
 // Create a new task
-const createTask = (req, res) => {
-	res.json(req.body);
+const createTask = async(req, res) => {
+	const task = await Task.create(req.body);
+	res.status(201).json({ task });
 };
 
 // Get single task
