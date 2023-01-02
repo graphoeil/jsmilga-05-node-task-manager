@@ -38,6 +38,8 @@ const getTask = async(req, res) => {
 		// Task exist
 		res.status(200).json({ task });
 	} catch (error){
+		// Is used if the id passed does not have the right number of characters
+		// therefore mongo returns an error message => CastError
 		res.status(500).json({ msg:error });
 	}
 };
