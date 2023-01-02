@@ -50,8 +50,23 @@ const updateTask = (req, res) => {
 };
 
 // Delete task
-const deleteTask = (req, res) => {
-	res.send('Delete task');
+const deleteTask = async(req, res) => {
+	const { id:taskID } = req.params;
+	try {
+		const task = await Task.findOneAndDelete({ _id:taskID });
+		// No task matching id
+		if (!task){
+			return res.status(404).json({ msg:`No task with id => ${ taskID }` });
+		}
+		// Task has been deleted
+		res.status(200).json({ task });
+		// Or if we don't care about the deleted task
+		// res.status(200).send();
+		// Or, another way...
+		// res.status(200).json({ task:null, status:'success' }); // Sky is the limit ;-)
+	} catch (error){
+		res.status(500).json({ msg:error });
+	}
 };
 
 // Exports
