@@ -4,6 +4,9 @@ const express = require('express');
 // Mongoose and db connection
 const connectDB = require('./db/connect');
 
+// .env
+require('dotenv').config();
+
 // App
 const app = express();
 
@@ -27,7 +30,7 @@ const port = 3000;
 // Start
 const start = async() => {
 	try {
-		await connectDB();
+		await connectDB(process.env.MONGO_URI);
 		// We only launch server if we successfully connected to db
 		app.listen(port, console.log(`Server is listening on port ${ port }...`));
 	} catch (error){
