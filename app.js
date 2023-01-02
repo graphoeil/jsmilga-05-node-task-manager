@@ -2,9 +2,7 @@
 const express = require('express');
 
 // Mongoose and db connection
-// Import the file will invoke connect method
-// => mongoose.connect(connectionString).then(() => { ...
-require('./db/connect');
+const connectDB = require('./db/connect');
 
 // App
 const app = express();
@@ -23,6 +21,19 @@ app.get('/', (req, res) => {
 // Routes middleware
 app.use('/api/v1/tasks', tasksRouter);
 
-// Listen
+// Port
 const port = 3000;
-app.listen(port, console.log(`Server is listening on port ${ port }...`));
+
+// Start
+const start = async() => {
+	try {
+		await connectDB();
+		// We only launch server if we successfully connected to db
+		app.listen(port, console.log(`Server is listening on port ${ port }...`));
+	} catch (error){
+		console.log(error);
+	}
+};
+
+// Init
+start();

@@ -8,15 +8,18 @@ const mongoose = require('mongoose');
 const connectionString = 'mongodb+srv://graphoeil:juF5XP6xcsArulA9@nodeexpressprojects.bezuxkx.mongodb.net/05-TASK-MANAGER?retryWrites=true&w=majority';
 
 // Connect to DB
-mongoose.connect(connectionString, {
-	// Removing deprecation warning in the console
-	// No need to do this with mongoose v6
-	useNewUrlParser:true,
-	useCreateIndex:true,
-	useFindAndModify:false,
-	useUnifiedTopology:true
-}).then(() => {
-	console.log('Connected to the DB...');
-}).catch((error) => {
-	console.log(error);
-});
+// First connect to DB then start the express server in app.js !
+const connectDB = (url) => {
+	// We return a promise !
+	return mongoose.connect(connectionString, {
+		// Removing deprecation warning in the console
+		// No need to do this with mongoose v6
+		useNewUrlParser:true,
+		useCreateIndex:true,
+		useFindAndModify:false,
+		useUnifiedTopology:true
+	});
+};
+
+// Export
+module.exports = connectDB;
