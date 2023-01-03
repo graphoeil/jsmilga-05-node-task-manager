@@ -45,7 +45,9 @@ const errorHandlerMiddleware = require('./middleware/error');
 app.use(errorHandlerMiddleware);
 
 // Port
-const port = 3000;
+// process.env.PORT is use for deployment...
+// To test in the terminal => PORT=6000 node app.js
+const port = process.env.PORT || 3000;
 
 // Start
 const start = async() => {
