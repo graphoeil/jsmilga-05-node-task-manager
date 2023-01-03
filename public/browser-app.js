@@ -39,7 +39,7 @@ const showTasks = async () => {
 };
 
 // Init
-showTasks()
+showTasks();
 
 // Delete task /api/tasks/:id
 tasksDOM.addEventListener('click', async(e) => {

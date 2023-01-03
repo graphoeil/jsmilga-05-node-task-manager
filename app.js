@@ -16,11 +16,9 @@ const tasksRouter = require('./routes/tasks');
 // For JSON parsing
 app.use(express.json());
 
-// Routes
-// Homepage
-app.get('/', (req, res) => {
-	res.send('Task Manager App');
-});
+// Static assets
+app.use(express.static('./public'));
+
 // Routes middleware
 app.use('/api/v1/tasks', tasksRouter);
 

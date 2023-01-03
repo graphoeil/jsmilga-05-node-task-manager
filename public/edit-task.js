@@ -48,8 +48,12 @@ editFormDOM.addEventListener('submit', async(e) => {
 			taskCompletedDOM.checked = true;
 		}
 		formAlertDOM.style.display = 'block';
-		formAlertDOM.textContent = `success, edited task`;
+		formAlertDOM.textContent = `success, edited task, redirect to home in 2 seconds...`;
 		formAlertDOM.classList.add('text-success');
+		// Navigate to index.html
+		setTimeout(() => {
+			window.location.href = 'index.html';
+		}, 2000);
 	} catch (error) {
 		console.error(error);
 		taskNameDOM.value = tempName;
@@ -60,5 +64,5 @@ editFormDOM.addEventListener('submit', async(e) => {
 	setTimeout(() => {
 		formAlertDOM.style.display = 'none';
 		formAlertDOM.classList.remove('text-success');
-	}, 3000)
+	}, 3000);
 });
