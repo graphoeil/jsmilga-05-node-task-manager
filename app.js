@@ -33,6 +33,12 @@ app.post('/api/v1/cars', async(req, res) => {
 	}
 });
 
+// 404
+// We must defined after all other routes !!!!
+// Will show Route does not exist...
+const notFound = require('./middleware/not-found');
+app.use(notFound);
+
 // Port
 const port = 3000;
 
