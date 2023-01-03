@@ -39,6 +39,11 @@ app.post('/api/v1/cars', async(req, res) => {
 const notFound = require('./middleware/not-found');
 app.use(notFound);
 
+// Custom error handler middleware
+// For use in tasks.js "controllers" with asyncWrapper
+const errorHandlerMiddleware = require('./middleware/error');
+app.use(errorHandlerMiddleware);
+
 // Port
 const port = 3000;
 

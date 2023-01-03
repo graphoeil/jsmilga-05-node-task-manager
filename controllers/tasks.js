@@ -1,21 +1,15 @@
 // Mongoose model
 // An instance of model is called a document
 const Task = require('../models/Task');
+const asyncWrapper = require('../middleware/async');
 
 // Get all the tasks
-const getAllTasks = async(req, res) => {
-	try {
-		const tasks = await Task.find({});
-		res.status(200).json({ tasks });
-		// Or
-		// res.status(200).json({ tasks, amount:tasks.length });
-		// res.status(200).json({ success:true, data:{ tasks, amount:tasks.length } });
-	} catch (error){
-		res.status(500).json({ msg:error });
-		// Or
-		// res.status(500).json({ success:false, msg:error });
-	}
-};
+// With asyncWrapper to avoid try / catch block
+const getAllTasks = asyncWrapper(async(req, res) => {
+	// Success
+	const tasks = await Task.find({});
+	res.status(200).json({ tasks });
+});
 
 // Create a new task
 // If table "tasks" doesn't exist
